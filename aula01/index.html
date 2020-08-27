@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula01</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    
+    <div id="div01">
+        Oi
+        <hr>
+    </div>
+
+    <button onclick="trocar()">Trocar</button>
+    <div id="div02">
+
+    </div>
+
+    <script>
+        function trocar(){
+
+        var div01 = document.getElementById("div01");
+        var conteudo = div01.innerHTML
+
+        var div02 = document.getElementById("div02");
+        div02.innerHTML = conteudo
+
+        div01.innerText = 'Olá <hr>'
+    }
+    </script>
+
+    <button onmouseover="mostrarAlerta()">Botão 02</button>
+
+    <div>
+        <div></div>
+        <div>
+            <script>
+                document.write("Calculadora <hr>");
+            //    document.alert("Iniciando a calculadora");
+                console.log("Passei por aqui");
+            </script>
+
+            <label>Valor: </label>
+            <input type="text" id="txtValor"/>
+            <button onclick="calcular()">Multiplicar por 2</button> <br>
+            
+            <label>Resultado</label>
+            <label id="lblResultado"></label>
+        </div>
+    </div>
+</body>
+</html>
