@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca Nome - Email</title>
+</head>
+<body>
+    <h2>Buscador de Nome e Email</h2>
+    <div id="BuscaInfo">Busque seu Nome e Email</div><br><br>   
+    <button onclick="BuscarInfo()">Buscar</button>
+
+
+    <script>
+        function BuscarInfo(){
+            var divBuscaInfo = document.getElementById("BuscaInfo");
+            divBuscaInfo .innerHTML="Carregando..."
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+
+                if( this.readyState == 4 && this.status== 200){
+                    divBuscaInfo.innerHTML=this.responseText
+            }
+                if( this.readyState == 4 && this.status== 404){
+                    alert("Página não encontrada");
+            }
+        };
+        xhttp.open("GET","NomeEmail.txt", true);
+        xhttp.send();
+
+    }     
+    </script>
+    
+</body>
+</html>
