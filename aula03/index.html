@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 03</title>
+</head>
+<body>
+    <div id="conteudo">Conteúdo antigo</div> <br><br><br>
+    <button onclick="lerInfo()">Atualizar</button>
+
+    <script>
+        function lerInfo(){
+            var divConteudo = document.getElementById("conteudo");
+            divConteudo.innerHTML="Carregando..."
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+
+                if( this.readyState == 4 && this.status== 200){
+                //    var divConteudo = document.getElementById("conteudo");
+                    divConteudo.innerHTML=this.responseText
+            }
+                if( this.readyState == 4 && this.status== 404){
+                    alert("Página não encontrada");
+            }
+        };
+        xhttp.open("GET","informacoes.txt", true);
+        xhttp.send();
+
+    }
+    </script> 
+    <hr>
+
+    <div id="divValores">Sem Valores</div>
+    <button onclick="lerValores()">Ler Valores</button>
+    
+    <script>
+
+        function lerValores(){
+            var divValores = document.getElementById("divValores");
+            divValores.innerHTML="Carregando..."
+
+            var xhttp2 = new XMLHttpRequest();
+            xhttp2.onreadystatechange =function(){
+                if ( this.readyState == 4 && this.status == 200){
+                    divValores.innerHTML = this.responseText
+                }
+            };
+            xhttp2.open("GET","servidor.php?txtValor=10", true);
+            xhttp2.send();
+            }
+
+    </script>
+</body>
+</html>
