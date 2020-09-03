@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts.js"></script>
+    <script src="jquery_3.5.1.js"></script>
+    <title>Formulário 01</title>
+</head>
+<body>
+    <form name="meuForm" action="salvar.php" onsubmit="return validarForm()" method="POST">
+        <label>Nome: </label>
+        <input type="text" name="txtNome">
+        <input type="submit" value="Salvar"/>
+    </form><br>
+
+    <hr><br>
+
+    <p>Insira valores de 1 a 10: </p>
+    <input id="txtValor">
+    <button onclick="validarNumero()">Enviar</button>
+    <p id="resultado"></p>
+
+    <hr><br>
+
+    <script>
+        aulaObjeto();
+    </script>
+
+    <hr><br>
+
+    <h1>Trabalhando com JQuery</h1> <br><br>
+
+    <h3>Olá</h3>
+    <button id="btnEsconder">Esconder</button> <hr>
+
+    <div class="div01">
+        <h4>Métodos Get e Set</h4>
+    </div>
+
+    <button id="btnTexto">Pegar o texto</button>
+    <button id="btnHtml">Pegar o html</button>
+
+    <div class="div02">
+
+    </div>
+
+    <script>
+        $("#btnTexto").click(function(){
+            var texto = $(".div01").html();
+            $(".div02").html (texto);
+            $ 
+        });
+
+
+        $("#btnEsconder").click( function(){
+            $("h3").toggle(1000, function(){
+                alert("Terminou a execução");
+            });
+        });
+    </script>
+
+</body>
+</html>
