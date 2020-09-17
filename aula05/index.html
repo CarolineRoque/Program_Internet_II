@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 05 XML</title>
+</head>
+<body>
+    <div id="estatico"></div>
+    <button onclick="lerEstatico()">Ler XML estático</button>
+
+    <script>
+        function lerEstatico(){
+
+            var http = new XMLHttpRequest();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    var dadosXML = this.responseXML;
+
+                    var produtos = dadosXML.getElementsByTagName("produto");
+                    var texto = ""
+                    for ( i=0; i < produtos.length; i++){
+                        var nome = produtos[i].getElementsByTagName("nome");
+                        var preco = produtos[i].getElementsByTagName("preco");
+                        texto += "Nome: " + nome[0].childNodes[0].nodeValue + "<br>"; 
+                        texto += "Preço: " + preco[0].childNodes[0].nodeValue + "<br><br>"; 
+                    }
+                    document.getElementById("estatico").innerHTML = texto;
+                }
+            };
+            http.open("GET", "informacoes.xml", true);
+            http.send();
+        }
+
+    </script>
+
+    <hr>
+
+    <div id="dinamico"></div>
+        <button onclick="lerDinamico()">Ler XML Dinamico</button>
+
+        <script>
+            function lerDinamico(){
+
+                var http = new XMLHttpRequest();
+                http.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        var dadosXML = this.responseXML;
+                        var produtos = dadosXML.getElementsByTagName("produto");
+                        var texto ='<table border="1">';
+                        texto += '<tr>';
+                        texto += '  <th>Id:</th>';
+                        texto += '  <th>Nome:</th>';
+                        texto += '  <th>Preço:</th>';
+                        texto += '</tr>';
+
+                        for ( i = 0; i < produtos.length; i++){
+                            
+                            id =   produtos[i].getElementsByTagName("id");
+                            nome = produtos[i].getElementsByTagName("nome");
+                            preco= produtos[i].getElementsByTagName("preco");
+
+                            texto += '<tr>';
+                            texto += '      <td>' + id[0].childNodes[0].nodeValue +'</td>';
+                            texto += '      <td>' + nome[0].childNodes[0].nodeValue +'</td>';
+                            texto += '      <td>' + preco[0].childNodes[0].nodeValue +'</td>';
+                            texto += '</tr>';
+                        }
+
+                        texto += '</table>'
+
+                        document.getElementById("dinamico").innerHTML = texto;
+                    }
+                };
+                http.open("GET", "servidor.php", true);
+                http.send();
+            }
+
+        </script>
+
+</body>
+</html>
