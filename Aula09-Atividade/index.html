@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Atividade-Aula09</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <form method="POST">
+        CPF: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type=" text " name="cpf" id="cpf" maxlength="11" size="11" placeholder="Somente números"> <br>
+        Nome:&nbsp;&nbsp;&nbsp;&nbsp;  <input type="text" name="nome" id="nome"><br>
+        Telefone: <input type="text" name="telefone" id="telefone" size="20" maxlength="9" placeholder="Somente números">
+        <input type="button" name="salvar" id="salvar" value="Salvar">
+    </form>
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function(){
+        $("#salvar").click(function(){
+            $.ajax({
+                url: "http://localhost:8001/pessoas",
+                type: 'POST',
+                data: {
+                    cpf: $("#cpf").val(),
+                    nome: $("#nome").val(),
+                    telefone: $("#telefone").val()
+                },
+                success: function(data) {
+                    alert(data);
+                }
+            });
+        });
+    });
+</script>

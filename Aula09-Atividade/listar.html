@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Atividade-Aula-09</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>Cpf</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th colspan="2">Ações</th>
+        </tr>
+        <tbody id="conteudo">
+            
+        </tbody>
+    </table>
+
+
+    <form id="alterar">
+        <hidden name="cpf" id="cpf" value="" />
+        Nome:&nbsp;&nbsp;&nbsp;&nbsp;  <input type="text" name="nome" id="nome"><br>
+        Telefone: <input type="text" name="telefone" id="telefone" size="20" maxlength="9" placeholder="Somente números">
+        <input type="button" id="editar" value="Editar">
+    </form>
+</body>
+
+</html>
+
+<script>
+
+    function deletar(cpf){
+        $.ajax({
+            url: "http://localhost:8001/pessoas/" + cpf,
+            type: 'DELETE',
+            success: function(data) {
+                alert(data);
+                carregarTabela();
+            }
+        });
+    }
+
+    function selecionar(cpf){
+
+        $("#alterar").show();
+
+        $.ajax({
+            url: "http://localhost:8001/pessoas/" + cpf,
+            type: 'GET',
+            success: function(data) {
+
+                $("#cpf").val(cpf);
+                $("#nome").val(data.nome);
+                $("#telefone").val(data.telefone);
+            }
+        });
+    }
+
+    function carregarTabela() {
+
+        $("#conteudo").html("");
+
+        $.ajax({
+            url: "http://localhost:8001/pessoas",
+            type: 'GET',
+            success: function(data) {
+
+                var pessoas = data
+
+                var html = "";
+
+                $.each(pessoas,function(i, pessoa){
+                    html += "<tr>";
+                    html += "<td>"+ pessoa.cpf +"</td>";
+                    html += "<td>"+ pessoa.nome +"</td>";
+                    html += "<td>"+ pessoa.telefone +"</td>";
+                    html += "<td><a href='#' onClick='selecionar("+pessoa.cpf+")' id='editar'>Editar</td>";
+                    html += "<td><a href='#' onClick='deletar("+pessoa.cpf+")'>Deletar</a></td>";
+                    html += "</tr>";
+                });
+
+                $("#conteudo").html(html);
+            }
+        });
+    }
+    
+
+    $(document).ready(function(){
+
+        carregarTabela();
+
+        $("#alterar").hide();
+
+        $("#editar").click(function(){
+            $.ajax({
+                url: "http://localhost:8001/pessoas/" + $("#cpf").val(),
+                type: 'PUT',
+                data: {
+                    nome: $("#nome").val(),
+                    telefone: $("#telefone").val()
+                },
+                success: function(data) {
+                    alert(data);
+                    $("#alterar").hide();
+                    carregarTabela();
+                }
+            });
+        });
+    });
+</script>
