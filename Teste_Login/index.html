@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teste-Login</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+
+  <div class="principal">
+    <h2>Bem vindos a Página de Login</h2>
+    <h4>Preencha os seguintes dados:</h4>
+
+    <form >
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="nome" placeholder="Nome completo"><br>
+      <label for="email">Email:</label>
+      <input type="text" name="email" id="email" placeholder="Email"><br>
+    </form>
+
+    <button>Salvar</button>
+    <h3>Ou se preferir</h3>
+
+    <div
+        class="fb-login-button"
+        data-max-rows="1"
+        data-size="large"
+        data-button-type="continue_with"
+        data-width="50px"
+        data-scope="public_profile, email" onlogin="verificaLogin();"
+    ></div>
+
+    <div id="mensagem">
+    </div>
+  </div>
+
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js"></script>
+</body>
+</html>
