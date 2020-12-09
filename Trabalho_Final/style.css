@@ -1,0 +1,66 @@
+#mensagem{
+    font-size: 15px;
+    margin-top: 20px;
+    
+}
+.principal{
+    margin-left: 30%;
+    margin-top: 10px;
+}
+label{
+    font-size: 20px;
+    margin-right: 50px;
+}
+button{
+    margin-left: 10%;
+    margin-top: 10px;
+}
+
+input{
+    padding-right: 20px;
+    margin-top: 8px;
+}
+form{
+    margin-left: 20px;
+}
+.ListarFilmes{
+    margin-left: 35%;
+    margin-top: 50px;
+    color: aliceblue;
+}
+h2, h3{
+    text-align: center;
+    color: aliceblue;
+}
+#voltaPagina{
+    margin-left: 50%;
+}
+
+body,html {
+    background-image: url('https://i.imgur.com/xhiRfL6.jpg');
+    height: 100%;
+}
+
+#profile-img {
+    height:180px;
+}
+.h-80 {
+    height: 80% !important;
+}
+.msg {
+    color: antiquewhite;
+    font-size: large;
+}
+
+.msg {
+    color: antiquewhite;
+    font-size: large;
+}
+.btn-add {
+    MARGIN: auto;
+    MARGIN-TOP: 30PX;
+}
+
+.btnc {
+    color: antiquewhite;
+}
